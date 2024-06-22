@@ -1,4 +1,4 @@
-﻿using Goodreads.Business.Persistence;
+﻿using Goodreads.Business.Abstractions.Repositories;
 using Goodreads.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +19,7 @@ public static class DependencyInjection
     private static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IBookRepository, BookRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
@@ -30,7 +31,7 @@ public static class DependencyInjection
             options => options
                 .UseMySql(
                     connectionString,
-                    new MySqlServerVersion(new Version(8, 0, 27))
+                    new MySqlServerVersion(new Version(8, 0, 25))
                 )
         );
         return services;

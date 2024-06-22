@@ -47,7 +47,7 @@ public static class Configuration
             });
 
             // possible bug - when using swagger ui with a different port number than the one noted below all requests will show CORS error
-            options.AddServer(new OpenApiServer { Url = "http://localhost:5210", Description = "Local server" });
+            options.AddServer(new OpenApiServer { Url = "http://localhost:5132", Description = "Local server" });
         });
 
         return services;

@@ -1,4 +1,4 @@
-﻿using Goodreads.Business.Persistence;
+﻿using Goodreads.Business.Abstractions.Repositories;
 using Goodreads.Business.Service.Interface;
 using Goodreads.Domain.Entities;
 

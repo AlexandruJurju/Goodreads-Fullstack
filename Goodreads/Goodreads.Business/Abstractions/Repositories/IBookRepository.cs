@@ -1,6 +1,6 @@
 ﻿using Goodreads.Domain.Entities;
 
-namespace Goodreads.Business.Persistence;
+namespace Goodreads.Business.Abstractions.Repositories;
 
 public interface IBookRepository
 {
