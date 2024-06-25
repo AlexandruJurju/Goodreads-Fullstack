@@ -8,6 +8,7 @@ public static class Configuration
     public static IServiceCollection AddConfiguration(this IServiceCollection services)
     {
         services.AddSwaggerDoc();
+        services.AddGlobalExceptionHandling();
         return services;
     }
 
@@ -50,6 +51,13 @@ public static class Configuration
             options.AddServer(new OpenApiServer { Url = "http://localhost:5132", Description = "Local server" });
         });
 
+        return services;
+    }
+
+    private static IServiceCollection AddGlobalExceptionHandling(this IServiceCollection services)
+    {
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
         return services;
     }
 }

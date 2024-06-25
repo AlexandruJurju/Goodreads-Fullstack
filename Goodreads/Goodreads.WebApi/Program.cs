@@ -10,6 +10,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddAuthentication();
 builder.Services.AddControllers();
 
+
 builder.Services.AddDataAccess(builder.Configuration)
     .AddBusiness(builder.Configuration)
     .AddConfiguration();
@@ -33,5 +34,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseExceptionHandler();
 
 app.Run();
