@@ -1,5 +1,4 @@
-﻿using Goodreads.Domain.Exceptions;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Goodreads;
@@ -35,7 +34,6 @@ public class GlobalExceptionHandler : IExceptionHandler
     {
         return exception switch
         {
-            BookNotFoundException => StatusCodes.Status404NotFound,
             ArgumentException => StatusCodes.Status400BadRequest,
             InvalidOperationException => StatusCodes.Status400BadRequest,
             UnauthorizedAccessException => StatusCodes.Status401Unauthorized,

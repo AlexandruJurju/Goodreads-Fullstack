@@ -10,6 +10,16 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
     {
         builder.HasKey(b => b.Id);
 
-        builder.Property(b => b.Title).HasMaxLength(255);
+        builder.Property(b => b.Title)
+            .HasMaxLength(255)
+            .IsRequired();
+
+        builder.Property(b => b.PageCount)
+            .IsRequired();
+
+        builder.HasOne(b => b.Author)
+            .WithMany(a => a.Books)
+            .HasForeignKey(b => b.AuthorId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
