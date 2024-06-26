@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Goodreads.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240622171938_Initial")]
+    [Migration("20240626152649_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -27,18 +27,17 @@ namespace Goodreads.DataAccess.Migrations
 
             modelBuilder.Entity("Goodreads.Domain.Entities.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("char(36)");
 
                     b.Property<int>("PageCount")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 

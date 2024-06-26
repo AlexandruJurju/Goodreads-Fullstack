@@ -1,4 +1,4 @@
-﻿namespace Goodreads.Business.Dtos;
+﻿namespace Goodreads.Business.Dtos.Authentication;
 
 public record RegisterRequest(
     string Email,

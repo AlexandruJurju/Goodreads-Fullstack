@@ -1,6 +1,8 @@
 ﻿using Goodreads.Business.Dtos;
+using Goodreads.Business.Dtos.Authentication;
 using Goodreads.Business.Service.Interface;
 using Goodreads.Domain.Entities;
+using Goodreads.Domain.Exceptions;
 
 namespace Goodreads.Business.Service;
 
@@ -11,11 +13,10 @@ public class AuthService(
 {
     public AuthenticationResult LoginUser(LoginRequest loginRequest)
     {
-        // todo: check for exceptions
         var user = userService.GetUserByEmail(loginRequest.Email);
-        if (user is null) throw new Exception("User with email not found");
+        if (user is null) throw new UserNotFoundException(loginRequest.Email);
 
-        if (user.Password != loginRequest.Password) throw new Exception("Passwords don't match");
+        if (user.Password != loginRequest.Password) throw new PasswordMismatchException();
 
         var token = jwtGenerator.GenerateToken(user);
 
@@ -28,7 +29,7 @@ public class AuthService(
 
     public User RegisterUser(RegisterRequest registerRequest)
     {
-        if (userService.GetUserByEmail(registerRequest.Email) is not null) throw new Exception("User already exists");
+        if (userService.GetUserByEmail(registerRequest.Email) is not null) throw new DuplicateEmailException(registerRequest.Email);
 
         User user = new User()
         {

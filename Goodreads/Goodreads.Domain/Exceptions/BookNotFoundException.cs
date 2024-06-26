@@ -2,7 +2,7 @@
 
 public class BookNotFoundException : Exception
 {
-    public BookNotFoundException(int bookId) : base($"Book with ID {bookId} was not found.")
+    public BookNotFoundException(Guid bookId) : base($"Book with ID {bookId} was not found.")
     {
     }
 }
